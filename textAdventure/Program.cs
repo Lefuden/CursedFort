@@ -30,13 +30,17 @@ namespace textAdventure
         public static void controls()
         {
             Console.WriteLine($"\n\n{player.name} stats:\nHP: {player.HP} | ATK: {player.Atk} | DEF: {player.Def}" +
-                              $"\nCommands:> NORTH[N] WEST[W] SOUTH[S] EAST[E] BACKPACK[B] [EXIT]");
+                              $"\nCommands:> NORTH[N] WEST[W] SOUTH[S] EAST[E] BACKPACK[B] MAP[M] [EXIT]");
             Console.Write("Input:> ");
             move = Console.ReadLine();
             move = move.ToUpper();
             if (move == "BACKPACK" || move == "B")
             {
                 player.backpack.ShowBackpack();
+            }
+            if (move =="MAP" || move == "M")
+            {
+                mapSystem.map();
             }
             if (move == "EXIT")
             {
@@ -73,7 +77,8 @@ namespace textAdventure
         }
         public static void menu()
         {
-            while (true) {
+            while (true) 
+            {
                 Console.Clear();
                 Console.WriteLine(" _____ _   _______  _____ ___________  ______ ___________ _____ ");
                 Console.WriteLine("/  __ \\ | | | ___ \\/  ___|  ___|  _  \\ |  ___|  _  | ___ \\_   _|");
@@ -111,9 +116,10 @@ namespace textAdventure
             // Display current Title
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.2";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.3";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
+            Console.Clear();
             menu();
         }
         static void Entrance()
@@ -1171,6 +1177,8 @@ namespace textAdventure
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                     Console.WriteLine($"Thank you {player.name}, for playing my game!\n" +
+                                      $"I had a lot of fun creating this small project.\n" +
+                                      $"It's my very first game, and I have learned a lot!\n\n" +
                                       $"This is where the adventure draws to a close.\n\n");
                     Console.WriteLine(" _____ _   _  _____   _____ _   _______ _ ");
                     Console.WriteLine("|_   _| | | ||  ___| |  ___| \\ | |  _  \\ |");
