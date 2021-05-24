@@ -17,6 +17,7 @@ namespace textAdventure
         public static Player player;
         public static int SWBhealthPotion = 1;
         public static int EWBhealthPotion = 1;
+        public static int NWLhealthPotion = 1;
         public static int Mace = 1;
         public static int OakShield = 1;
         public static bool southwingskeleton = true;
@@ -91,9 +92,9 @@ namespace textAdventure
                     player = new Player(Console.ReadLine());
                     Console.Clear();
                     Console.WriteLine($"This all started in a tavern in a sleepy hamlet, quite a few hours from where you now stand.\n" +
-                                      $"After hearing stories of a 'haunted fort' on a remote island, and people never to be seen again,\n" +
+                                      $"After hearing stories of a 'cursed fort' on a remote island, and people never to be seen again,\n" +
                                       $"you -drunkenly- proclaimed that YOU - {player.name}, mighty adventurer - shall free these poor souls\n" +
-                                      $"from whatever dangers hiding in this so called 'haunted fort'.\n\n" +
+                                      $"from whatever dangers hiding in this so called 'cursed fort'.\n\n" +
                                       $"And so, your adventure begins.\n");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
@@ -669,16 +670,17 @@ namespace textAdventure
                 else if (move == "SOUTH" || move == "S")
                 {
                     Console.Clear();
-                    Console.WriteLine("The large reinforced door is locked.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
                     if (puzzleSolved)
                     {
+                        Console.WriteLine("You try the key you got from solving the torch puzzle. The door is unlocked.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
                         Treasury();
                     }
-                    else
+                    else if (!puzzleSolved)
                     {
-                        Console.WriteLine("the door is still locked.");
+                        Console.WriteLine("The door is locked.");
+                        Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
                 }
@@ -790,7 +792,7 @@ namespace textAdventure
                     {
                         Console.Clear();
                         Console.WriteLine("You try the key you found in the Hall of Torches.\nWith a gentle click the door is unlocked. You step inside\n" +
-                                          " to find another stairwell. You ascend.");
+                                          "to find another stairwell. You ascend.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         EastWingLanding();
@@ -982,7 +984,7 @@ namespace textAdventure
             {
                 Console.Clear();
                 Console.WriteLine("You stand in a small corridor. The red carpet leads straight through the room,\n" +
-                    " between the door to the west and the stairwell to the east. There are large glass windows on both sides.");
+                    "between the door to the west and the stairwell to the east. There are large glass windows on both sides.");
                 controls();
 
                 if (move == "WEST" || move == "W")
@@ -1002,11 +1004,27 @@ namespace textAdventure
                 }
                 else if (move == "SOUTH" || move == "S")
                 {
-                    Console.Clear();
-                    Console.WriteLine("It's a small miracle these large glass windows are still intact - you think to yourself.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
+                    if (NWLhealthPotion == 1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("It's a small miracle these large glass windows are still intact - you think to yourself.\n" +
+                                          "There's a glass bottle with a red liquid inside, resting on the windowsill.\n" +
+                                          "You pocket it.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                        NWLhealthPotion = 0;
+                        player.backpack.backPack.Add(Item.HPpotion);
+                    }
+                    else if (NWLhealthPotion == 0)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You take another careful look around, in case of other items scattered around.\n" +
+                                          "There is nothing else of value.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
                 }
+
                 else if (move == "EAST" || move == "E")
                 {
                     Console.Clear();
@@ -1054,7 +1072,7 @@ namespace textAdventure
                                       "A tall monocled man with no hair except for a rather impressive, twirly moustache.\n" +
                                       "He's dressed in a fancy suit with a purple inlay accompanied by a purple tie.\n\n" +
                                       "The painting next to him must have been his wife. A beautiful red haired lady,\n" +
-                                      " wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
+                                      "wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
@@ -1117,7 +1135,7 @@ namespace textAdventure
                 }
             }
         }
-        static void ThroneRoom() //add quest item, remember to add quest description at the start too.
+        static void ThroneRoom()
         {
             while (true)
             {
@@ -1126,7 +1144,7 @@ namespace textAdventure
                     Console.Clear();
                     Console.WriteLine("As you step into the throne room, you suddenly feel the air getting significantly heavier,\n" +
                                       "you struggle to breathe. Looking straight ahead you notice a robed figure sitting on the throne.\n" +
-                                      "It lifts it's head, and as the hood falls off, you realise this is another skeleton.\n" +
+                                      "It lifts its head, and as the hood falls off, you realise this is another skeleton.\n" +
                                       "But something is very different to the previous undead you've fought so far.\n\n" +
                                       "This one grabs a gnarled staff that's been leaning on the side of the throne, and stands up.\n" +
                                       "You're filled with doubt as alien voices whisper inside your head.\n\n" +
@@ -1148,7 +1166,7 @@ namespace textAdventure
                     Console.ReadLine();
                     Console.WriteLine($"Thank you {player.name}, for playing my game!\n" +
                                       $"This is where the adventure draws to a close.\n\n");
-                    Console.WriteLine("_____ _   _  _____   _____ _   _______ _ ");
+                    Console.WriteLine(" _____ _   _  _____   _____ _   _______ _ ");
                     Console.WriteLine("|_   _| | | ||  ___| |  ___| \\ | |  _  \\ |");
                     Console.WriteLine("  | | | |_| || |__   | |__ |  \\| | | | | |");
                     Console.WriteLine("  | | |  _  ||  __|  |  __|| . ` | | | | |");

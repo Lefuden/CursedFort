@@ -16,7 +16,7 @@ namespace BattleSystem
         public Player(string name)
         {
             this.name = name; //name är parametern. this.name är objektets namn. "this" refererar till objektet som constructorn skapar.
-            HP = 20;
+            HP = 25;
             Def = 2;
             Atk = 5;
             backpack = new Backpack();
@@ -45,8 +45,8 @@ namespace BattleSystem
             else if (enemyType == EnemyType.Lich)
             {
                 HP = 40;
-                Def = 5;
-                Atk = 9;
+                Def = 3;
+                Atk = 7;
             }
         }
         public EnemyType enemyType { get; set; }
