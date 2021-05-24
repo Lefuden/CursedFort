@@ -108,6 +108,12 @@ namespace textAdventure
         }
         static void Main(string[] args)
         {
+            // Display current Title
+            Console.WriteLine("Default Title: {0}",
+                                   Console.Title);
+            Console.Title = "Cursed Fort by Lefuden v.1.0.2";
+            Console.WriteLine("Changed Title: {0}",
+                                   Console.Title);
             menu();
         }
         static void Entrance()
