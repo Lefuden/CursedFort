@@ -11,17 +11,14 @@ namespace Puzzle
     public class Puzzle
     {
         public static bool[] torch = { false, false, false, false };
-
-        
-
         public static string str;
         public static string decide;
         public static void controlPuzzle()
         {
             Console.Clear();
             Console.WriteLine("A small table is in front of you; flint and tinder, a black cloth for smothering fire and a small, locked box is on the table.\n" +
-                              "Slightly above the table you see four torches aligned horizontally. They are all unlit.");
-            Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [STOP] [EXIT]");
+                              "Slightly above the table you see four torches aligned horizontally. The number '10' is inscribed on the table.");
+            Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [LEAVE] [EXIT]");
             Console.Write("Input:> ");
             str = Console.ReadLine().ToUpper();
 
@@ -30,7 +27,7 @@ namespace Puzzle
                 if (str.Length < 1)
                 {
                     Console.Clear();
-                    Console.WriteLine("Invalid input. Enter # digit, STOP or EXIT.");
+                    Console.WriteLine("Invalid input. Enter # digit, LEAVE or EXIT.");
                 }
                 else if (int.TryParse(str, out int n))
                 {
@@ -49,7 +46,7 @@ namespace Puzzle
                     }else
                     {
                         Console.Clear();
-                        Console.WriteLine("Invalid input. Enter # digit, STOP or EXIT.");
+                        Console.WriteLine("Invalid input. Enter # digit, LEAVE or EXIT.");
                     }
                 }
                 else if (str == "EXIT" || str == "E")
@@ -81,28 +78,34 @@ namespace Puzzle
                         Console.ReadLine();
                     }
                 }
-                else if (str == "STOP" || str == "S")
+                else if (str == "LEAVE" || str == "L")
                 {
+                    Console.Clear();
+                    Console.WriteLine("Frustrated, you decide to leave this puzzle for later.\n" +
+                                      "Maybe there's a hint nearby?\n" +
+                                      "Press Enter to continue.");
+                    Console.ReadLine();
                     break;
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Invalid input. Enter # digit, STOP or EXIT.");
+                    Console.WriteLine("Invalid input. Enter # digit, LEAVE or EXIT.");
                 }
                 if (torch[0] && !torch[1] && torch[2] && !torch[3])
                 {
                     Console.Clear();
-                    Console.WriteLine("After arranging the lit torches in a specific pattern, you hear the click of a lock.\n" +
-                                      "The small box on the table underneath the torches must've been unlocked!" +
-                                      "You open the box and find a small key!\n" +
-                                      "You pocket it.");
+                    Console.Write("After arranging the lit torches in a specific pattern, you hear the click of a lock.\n" +
+                                  "The small box on the table underneath the torches must've been unlocked!\n" +
+                                  "You open the box and find a ");
+                    Program.KWStart();
+                    Console.Write("heavy key!\n");
+                    Program.KWStop();
+                    Console.WriteLine("You pocket it.\n");
+                    Console.WriteLine("You hear a loud mechanical noise coming from the reinforced door.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
-
                     Program.puzzleSolved = true;
-
-
                     break;
                 }
                 foreach (bool b in torch)
@@ -116,10 +119,8 @@ namespace Puzzle
                         Console.Write("O  ");
                     }
                 }
-                
-                Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [STOP] [EXIT]");
+                Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [LEAVE] [EXIT]");
                 Console.Write("Input:> ");
-
                 str = Console.ReadLine().ToUpper();
                 Console.Clear();
             }

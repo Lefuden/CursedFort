@@ -2,6 +2,7 @@
 using System;
 using backpack;
 using Puzzle;
+using SecretEvent;
 
 namespace textAdventure
 {
@@ -26,6 +27,12 @@ namespace textAdventure
         public static bool throneroomlich = true;
         public static string decide;
         public static bool puzzleSolved = false;
+        public static bool lockedChest = true;
+        public static bool magicTrinket = false;
+        public static bool trinketActivated = false;
+        public static bool puzzleActivated = false;
+        public static bool secretEventWatched = false;
+
 
         public static void controls()
         {
@@ -55,15 +62,17 @@ namespace textAdventure
                     {
                         Console.Clear();
                         Console.WriteLine($"Thank you for playing, {player.name}!");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
                         Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
                         Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
                         Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
                         Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
                         Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
-                        Console.WriteLine("Press Enter to exit.");
+                        Console.ResetColor();
+                        Console.WriteLine("Press Enter to return to the main menu.");
                         Console.ReadLine();
-                        Environment.Exit(-1);
+                        menu();
                     }
                     else if (decide == "NO" || decide == "N")
                     {
@@ -80,13 +89,17 @@ namespace textAdventure
             while (true) 
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine(" _____ _   _______  _____ ___________  ______ ___________ _____ ");
                 Console.WriteLine("/  __ \\ | | | ___ \\/  ___|  ___|  _  \\ |  ___|  _  | ___ \\_   _|");
                 Console.WriteLine("| /  \\/ | | | |_/ /\\ `--.| |__ | | | | | |_  | | | | |_/ / | |  ");
                 Console.WriteLine("| |   | | | |    /  `--. \\  __|| | | | |  _| | | | |    /  | |  ");
                 Console.WriteLine("| \\__/\\ |_| | |\\ \\ /\\__/ / |___| |/ /  | |   \\ \\_/ / |\\ \\  | |  ");
-                Console.WriteLine(" \\____/\\___/\\_| \\_|\\____/\\____/|___/   \\_|    \\___/\\_| \\_| \\_/  \n" +
-                                  "A text based RPG created by Daniel 'Lefuden' Frykman\n\n");
+                Console.WriteLine(" \\____/\\___/\\_| \\_|\\____/\\____/|___/   \\_|    \\___/\\_| \\_| \\_/  \n");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("A text based RPG created by Daniel 'Lefuden' Frykman\n\n");
+                Console.ResetColor();
                 Console.WriteLine("1. New game");
                 Console.WriteLine("2. Exit\n\n");
                 Console.Write("Input:> ");
@@ -111,12 +124,22 @@ namespace textAdventure
                 }
             }
         }
+
+        public static void KWStart()
+        {
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+        }
+        public static void KWStop()
+        { 
+        Console.ResetColor();
+        }
         static void Main(string[] args)
         {
             // Display current Title
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.3";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.4";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
             Console.Clear();
@@ -161,11 +184,20 @@ namespace textAdventure
                     {
                         Console.Clear();
                         Console.WriteLine("You thought being an adventurer was what you wanted to be, but a sudden realisation convinces you\n" +
-                                          "that your real calling is goat herding. \nYou step on to the boat and raise the sail.\n\nGAME OVER!");
-                        Console.WriteLine("\nPress Enter to exit.");
+                                          "that your real calling is goat herding. \nYou step on to the boat and raise the sail.\n\n");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
+                        Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
+                        Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
+                        Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
+                        Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
+                        Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
+                        Console.ResetColor();
+                        Console.WriteLine("Press Enter to return to the main menu.");
                         Console.ReadLine();
-                        Environment.Exit(-1);
+                        menu();
                     }
+
                     else
                     {
                         Console.Clear();
@@ -202,12 +234,17 @@ namespace textAdventure
                     if (guardQuarterKey == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("You try the key you found in the Guards Quarter.\nWith a gentle click the door is unlocked. You step inside.");
+                        Console.Write("You try the ");
+                        KWStart();
+                        Console.Write("small silver key ");
+                        KWStop();
+                        Console.Write("you found in the Guards Quarter.\nWith a gentle click the door is unlocked. You step inside.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
-                        SouthWingStairwell();
                         guardQuarterKeyUnlocked = 1;
                         guardQuarterKey = 1;
+                        SouthWingStairwell();
+
                     }
                     else if (guardQuarterKeyUnlocked == 1)
                     {
@@ -280,7 +317,11 @@ namespace textAdventure
                     if (guardQuarterKey == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("The shiny object on the table is a small silver key, you pocket it.");
+                        Console.Write("The shiny object on the table is a ");
+                        KWStart();
+                        Console.Write("small silver key");
+                        KWStop();
+                        Console.Write(", you pocket it.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         guardQuarterKey--;
@@ -429,9 +470,12 @@ namespace textAdventure
                     {
                         Console.Clear();
                         Console.WriteLine("As you put your hand on the cold stone railing, a part of it comes loose and falls into the water with a splash.\n" +
-                                          "You push back with your other hand, and as you re-adjust you notice something in the corner of your eye.\n" +
-                                          "There's a glass bottle with a red liquid inside laying on the ground.\n" +
-                                          "You pocket it.");
+                                          "You push back with your other hand, and as you re-adjust you notice something in the corner of your eye.\n");
+                        Console.Write("There's a ");
+                        KWStart();
+                        Console.Write("glass bottle ");
+                        KWStop();
+                        Console.Write("with a red liquid inside laying on the ground.\nYou pocket it.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         SWBhealthPotion--;
@@ -493,9 +537,13 @@ namespace textAdventure
                     if (Mace == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("The dark towering stone walls of the fort fills you with an ominous feeling.\n" +
-                                          "A fallen adventurer is slumped against the wall. The mace in his hand looks like it's made of high quality steel.\n" +
-                                          "You carefully take it, trying not to anger any potential angry spirits hanging around.");
+                        Console.Write("The dark towering stone walls of the fort fills you with an ominous feeling.\n" +
+                                      "A fallen adventurer is slumped against the wall. The ");
+                        KWStart();
+                        Console.Write("mace ");
+                        KWStop();
+                        Console.Write("in his hand looks like it's made of high quality steel.\n");
+                        Console.WriteLine("You carefully take it, trying not to anger any potential angry spirits hanging around.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         Mace--;
@@ -665,11 +713,22 @@ namespace textAdventure
 
                 if (move == "WEST" || move == "W")
                 {
-                    Console.Clear();
-                    Console.WriteLine("Looking over at the lit sconces, you appreciate the lack of darkness in this area.\n" +
-                                      "It adds a sense of security, something which is hard to find in this fort.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
+                    if (puzzleActivated == false){
+                        Console.Clear();
+                        Console.WriteLine("A small part of the wall has no light reaching it.\n" +
+                                          "It looks like something's written here, but you can't quite make it out.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
+                    else if (puzzleActivated == true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("The light from the torches illuminates the previously dark part of the wall.\n" +
+                                          "You make out the writing as 'XOXO'. Interesting..");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
+                    
                 }
                 else if (move == "NORTH" || move == "N")
                 {
@@ -684,14 +743,14 @@ namespace textAdventure
                     Console.Clear();
                     if (puzzleSolved)
                     {
-                        Console.WriteLine("You try the key you got from solving the torch puzzle. The door is unlocked.");
+                        Console.WriteLine("It seems the loud noise you heard was the door unlocking.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         Treasury();
                     }
                     else if (!puzzleSolved)
                     {
-                        Console.WriteLine("The door is locked.");
+                        Console.WriteLine("The door is locked, with no discernable keyhole.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
@@ -700,6 +759,7 @@ namespace textAdventure
                 {
                     if (!puzzleSolved)
                     {
+                        puzzleActivated = true;
                         Puzzle.Puzzle.controlPuzzle();
                     }
                     else if (puzzleSolved)
@@ -724,12 +784,47 @@ namespace textAdventure
 
                 if (move == "WEST" || move == "W")
                 {
-                    Console.Clear();
-                    Console.WriteLine("Sadly, all of the chests are locked and secured by heavy reinforced metal.\n" +
-                                      "You unsuccessfully try to pry them open.\n" +
-                                      "Dissapointed you decide it's not worth ruining your weapons for this.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
+                    if (Mace == 1 && lockedChest == true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Sadly, all of the chests are locked and secured by heavy reinforced metal.\n" +
+                                          "You notice one of the chests has a slightly worn lock on it." +
+                                          "You unsuccessfully try to pry it open.\n" +
+                                          "Dissapointed you decide it's not worth ruining your weapon for this.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
+                    else if (Mace == 0 && lockedChest == true && player.Atk == 7)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("All of the chests are locked and secured by heavy reinforced metal.\n" +
+                                          "You notice one of the chests has a slightly worn lock on it.\n" +
+                                          "You decide to give it a proper bashing with your old weapon.\n\n" +
+                                          "After a couple well aimed swings, you successfully remove the lock!\n" +
+                                          "Your old weapon breaks, luckily you found that steel mace earlier.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                        Console.Write("Resting on a bed of fine, red silk, you find a beautiful ");
+                        KWStart();
+                        Console.Write("rose necklace");
+                        KWStop();
+                        Console.Write(". The bud is made out of black opal.\n");
+                        Console.WriteLine("As you take a closer look, it feels like you're gazing at the night sky.\n" +
+                                          "This must be worth a fortune!\n" +
+                                          "You carefully place it in your pouch.\n");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                        lockedChest = false;
+                        magicTrinket = true;
+                        player.backpack.backPack.Add(Item.RoseNecklace);
+                    }
+                    else if (Mace == 0 && lockedChest == false)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("There is nothing else of value. Your old broken weapon is on the ground.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
                 }
                 else if (move == "NORTH" || move == "N")
                 {
@@ -744,8 +839,11 @@ namespace textAdventure
                     if (treasuryKey == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("You find a very finely crafted key!\n" +
-                                          "You pocket it.");
+                        Console.Write("You find a finely crafted ");
+                        KWStart();
+                        Console.Write("ornate key!\n");
+                        KWStop();
+                        Console.Write("You pocket it.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         treasuryKey--;
@@ -763,8 +861,11 @@ namespace textAdventure
                     if (OakShield == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("You find a very sturdy oak shield on top of one of the many locked chests.\n" +
-                                          "This will surely come in handy!");
+                        Console.Write("You find a very sturdy ");
+                        KWStart();
+                        Console.Write("oak shield ");
+                        KWStop();
+                        Console.Write("on top of one of the many locked chests.\nThis will surely come in handy!\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         OakShield--;
@@ -778,7 +879,6 @@ namespace textAdventure
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
-
                 }
             }
         }
@@ -803,8 +903,12 @@ namespace textAdventure
                     if (puzzleSolved)
                     {
                         Console.Clear();
-                        Console.WriteLine("You try the key you found in the Hall of Torches.\nWith a gentle click the door is unlocked. You step inside\n" +
-                                          "to find another stairwell. You ascend.");
+                        Console.Write("You try the ");
+                        KWStart();
+                        Console.Write("heavy key ");
+                        KWStop();
+                        Console.Write("you found in the Hall of Torches.\nWith a gentle click the door is unlocked. You step inside\n" +
+                                      "to find another stairwell. You ascend.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         EastWingLanding();
@@ -813,7 +917,11 @@ namespace textAdventure
                     else if (!puzzleSolved)
                     {
                         Console.Clear();
-                        Console.WriteLine("The door is locked. Perhaps there's a key somewhere.");
+                        Console.Write("The door is locked. Perhaps there's a ");
+                        KWStart();
+                        Console.Write("key ");
+                        KWStop();
+                        Console.Write("somewhere.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
@@ -902,8 +1010,12 @@ namespace textAdventure
                     if (EWBhealthPotion == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("You let your eyes wander for a bit, you spot something on the ground.\n" +
-                                          "There's a glass bottle with a red liquid inside it.\nYou pocket it.");
+                        Console.WriteLine("You let your eyes wander for a bit, you spot something on the ground.\n");
+                        Console.Write("There's a ");
+                        KWStart();
+                        Console.Write("glass bottle ");
+                        KWStop();
+                        Console.Write("with a red liquid inside.\nYou pocket it.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         EWBhealthPotion--;
@@ -928,10 +1040,31 @@ namespace textAdventure
                 }
                 else if (move == "EAST" || move == "E")
                 {
-                    Console.Clear();
-                    Console.WriteLine("You gaze out over the water, it's quiet. Too quiet. No birds, no fish - only the soft whispers of the wind.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
+                    if (magicTrinket == false)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You gaze out over the water, it's quiet. Too quiet. No birds, no fish - only the soft whispers of the wind.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
+                    else if (magicTrinket == true)
+                    {
+                        trinketActivated = true;
+                        Console.Clear();
+                        Console.WriteLine("You see the reflections of the night sky in the water. The full moon is accompanied by a handful of stars.\n" +
+                                          "You take the rose necklace out from your pouch and lift it to your eye.\n" +
+                                          "As the moonlight hits the opal, it starts to glow slightly.\n\n" +
+                                          "You stand there in a daze, appreciating the beauty of this moment for a while.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You gaze out over the water, it's calm and silent. only the soft whispers of the wind can be heard.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
                 }
             }
         }
@@ -1019,9 +1152,12 @@ namespace textAdventure
                     if (NWLhealthPotion == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("It's a small miracle these large glass windows are still intact - you think to yourself.\n" +
-                                          "There's a glass bottle with a red liquid inside, resting on the windowsill.\n" +
-                                          "You pocket it.");
+                        Console.WriteLine("It's a small miracle these large glass windows are still intact - you think to yourself.\n");
+                        Console.Write("There's a ");
+                        KWStart();
+                        Console.Write("glass bottle ");
+                        KWStop();
+                        Console.Write("with a red liquid inside, resting on the windowsill.\nYou pocket it.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         NWLhealthPotion = 0;
@@ -1052,33 +1188,63 @@ namespace textAdventure
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("You set foot in what can only be described as a rather extravagant area.\n" +
-                                  "The walls are full of paintings, the red carpet splits in the middle of the room, \n" +
+                Console.WriteLine("You set foot in what can only be described as a rather extravagant area." +
+                                  "\nThe sconces lighting up the room are made of polished steel.\n" +
+                                  "There are paintings on the walls, the red carpet splits in the middle of the room, \n" +
                                   "leading to doors to the south, west and east.");
                 controls();
 
                 if (move == "WEST" || move == "W")
                 {
-                    if (puzzleSolved)
+                    while (decide != "YES" || decide != "Y" || decide != "NO" || decide != "N")
                     {
                         Console.Clear();
-                        Console.WriteLine("You try the key you found in the Treasury.\nWith a gentle click the door is unlocked. You step inside.");
-                        Console.WriteLine("Press Enter to continue.");
-                        Console.ReadLine();
-                        ThroneRoom();
-                    }
-                    else if (!puzzleSolved)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("The door is locked. Perhaps there's a key somewhere.");
-                        Console.WriteLine("Press Enter to continue.");
-                        Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("This is the point of no return.\n");
+                        KWStop();
+                        Console.WriteLine($"If you want to keep exploring, I suggest waiting before you go here.\n" +
+                                          $"Do you wish to enter, {player.name}?");
+                        Console.Write("[Y]ES/[N]O:> ");
+                        decide = Console.ReadLine().ToUpper();
+
+                        if (decide == "YES" || decide == "Y" && !puzzleSolved)
+                        {
+                            Console.Clear();
+                            Console.Write("The door is locked, perhaps there's a ");
+                            KWStart();
+                            Console.Write("key");
+                            KWStop();
+                            Console.Write(" somewhere.\n");
+                            Console.WriteLine("Press Enter to continue.");
+                            Console.ReadLine();
+                            ExtravagantRoom();
+                        }
+                        else if (decide == "NO" || decide == "N" && !puzzleSolved)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You decide to keep exploring.");
+                            Console.WriteLine("Press Enter to continue.");
+                            Console.ReadLine();
+                            ExtravagantRoom();
+                        }
+                        else if (decide == "YES" || decide == "Y" && puzzleSolved)
+                        {
+                            Console.Clear();
+                            Console.Write("You try the ");
+                            KWStart();
+                            Console.Write("ornate key ");
+                            KWStop();
+                            Console.Write("you found in the Treasury.\nWith a gentle click the door is unlocked. You step inside.\n");
+                            Console.WriteLine("Press Enter to continue.");
+                            Console.ReadLine();
+                            ThroneRoom();
+                        }
                     }
                 }
 
-                
                 else if (move == "NORTH" || move == "N")
                 {
+                    if (secretEventWatched == false)
                     Console.Clear();
                     Console.WriteLine("There are paintings of what you assume were the nobles that once lived in this fort.\n" +
                                       "A tall monocled man with no hair except for a rather impressive, twirly moustache.\n" +
@@ -1087,6 +1253,26 @@ namespace textAdventure
                                       "wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
+                    if (magicTrinket == true && trinketActivated == true)
+                    {
+                        Console.Clear();
+                        Console.Write("Suddenly, the ");
+                        KWStart();
+                        Console.Write("rose necklace");
+                        KWStop();
+                        Console.Write(" hums to life and escapes your pouch.\n");
+                        Console.WriteLine("It floats towards the paintings as the eyes of the lady follow its movement.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                        NecklaceEvent.EventStart();
+                    }
+                    if (secretEventWatched == true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("The paintings are now blank.");
+                        Console.WriteLine("Press Enter to continue");
+                        Console.ReadLine();
+                    }
                 }
                 else if (move == "SOUTH" || move == "S")
                 {
@@ -1180,15 +1366,17 @@ namespace textAdventure
                                       $"I had a lot of fun creating this small project.\n" +
                                       $"It's my very first game, and I have learned a lot!\n\n" +
                                       $"This is where the adventure draws to a close.\n\n");
+                    KWStart();
                     Console.WriteLine(" _____ _   _  _____   _____ _   _______ _ ");
                     Console.WriteLine("|_   _| | | ||  ___| |  ___| \\ | |  _  \\ |");
                     Console.WriteLine("  | | | |_| || |__   | |__ |  \\| | | | | |");
                     Console.WriteLine("  | | |  _  ||  __|  |  __|| . ` | | | | |");
                     Console.WriteLine("  | | | | | || |___  | |___| |\\  | |/ /|_|");
                     Console.WriteLine("  \\_/ \\_| |_/\\____/  \\____/\\_| \\_/___/ (_)\n\n");
-                    Console.WriteLine("Press Enter to exit.");
+                    KWStop();
+                    Console.WriteLine("Press Enter to return to the main menu.");
                     Console.ReadLine();
-                    Environment.Exit(-1);
+                    menu();
                 }
             }
         }

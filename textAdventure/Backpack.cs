@@ -48,13 +48,13 @@ namespace backpack
                             break;
                         }
                     }
-                    else if (str == "EXIT" || str == "E")
+                    else if (str == "CLOSE" || str == "C")
                     {
                         Console.WriteLine("You close the backpack\nPress Enter to continue.");
                         Console.ReadLine();
                         break;
                     }
-                    Console.Write("Incorrect input, select item [#] or EXIT[E]:> ");
+                    Console.Write("Incorrect input, select item [#] or CLOSE[C]:> ");
                     str = Console.ReadLine().ToUpper();
                 }
             }
@@ -67,26 +67,39 @@ namespace backpack
                 case Item.SteelMace:
                     Program.player.Atk += 2;
                     backPack.RemoveAt(slot);
+                    Program.KWStart();
                     Console.WriteLine("You equip the Steel Mace. Your Attack increase by 2.");
+                    Program.KWStop();
                     Console.ReadLine();
                     break;
                 case Item.OakShield:
                     Program.player.Def += 2;
                     backPack.RemoveAt(slot);
+                    Program.KWStart();
                     Console.WriteLine("You equip the Oak Shield. Your Defense increase by 2.");
+                    Program.KWStop();
                     Console.ReadLine();
                     break;
                 case Item.HPpotion:
                     Program.player.HP += 10;
                     backPack.RemoveAt(slot);
+                    Program.KWStart();
                     Console.WriteLine("You chug the Health Potion. You heal 10 HP.");
+                    Program.KWStop();
                     Console.ReadLine();
                     break;
                 case Item.WheelofCheese:
                     Program.player.HP++;
                     backPack.RemoveAt(slot);
-                    Console.WriteLine("You eat a whole wheel of cheese. You heal 1 HP.\n" +
-                                      "Laat Dovahkiin would be proud!");
+                    Program.KWStart();
+                    Console.WriteLine("You eat a whole wheel of cheese. You heal 1 HP.");
+                    Program.KWStop();
+                    Console.WriteLine("Laat Dovahkiin would be proud!");
+                    Console.ReadLine();
+                    break;
+                case Item.RoseNecklace:
+                    Console.WriteLine("The beautiful piece of jewelery is captivating you for a while.\n" +
+                                      "Gazing into the black opal soothes you. You put it back in your pouch.");
                     Console.ReadLine();
                     break;
                 default:
@@ -99,7 +112,8 @@ namespace backpack
         SteelMace,
         OakShield,
         HPpotion,
-        WheelofCheese
+        WheelofCheese,
+        RoseNecklace
     }
 }
 

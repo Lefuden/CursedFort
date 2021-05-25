@@ -148,17 +148,19 @@ namespace BattleSystem
                         {
                             Console.Clear();
                             Console.WriteLine($"Thank you for playing, {player.name}!");
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
                             Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
                             Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
                             Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
                             Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
                             Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
-                            Console.WriteLine("Press Enter to exit.");
+                            Console.ResetColor();
+                            Console.WriteLine("Press Enter to return to the main menu.");
                             Console.ReadLine();
-                            Environment.Exit(-1);
+                            Program.menu();
                         }
-                        else if (fdecide == "NO" || fdecide == "N")
+                            else if (fdecide == "NO" || fdecide == "N")
                         {
                             Console.Clear();
                             Console.WriteLine("You decide against leaving. You shake your head as to say: I've come this far, there's no point in turning back now!");
@@ -178,21 +180,23 @@ namespace BattleSystem
                 }
                 
                 EnemyAccuracy(player, enemy);
-                
+
                 if (player.HP <= 0)
                 {
                     Console.Clear();
                     Console.WriteLine($"The {enemy.enemyType.ToString()} emanates an ominous aura as it suddenly moves faster.\n" +
                                       $"You couldn't see what hit you as your vision fades to black. This is how your adventure ends.\n\n");
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine(" _____   ___  ___  ___ _____   _____  _   _ ___________");
                     Console.WriteLine("|  __ \\ / _ \\ |  \\/  ||  ___| |  _  || | | |  ___| ___ \\");
                     Console.WriteLine("| |  \\// /_\\ \\| .  . || |__   | | | || | | | |__ | |_/ /");
                     Console.WriteLine("| | __ |  _  || |\\/| ||  __|  | | | || | | |  __||    / ");
                     Console.WriteLine("| |_\\ \\| | | || |  | || |___  \\ \\_/ /\\ \\_/ / |___| |\\ \\ ");
                     Console.WriteLine(" \\____/\\_| |_/\\_|  |_/\\____/   \\___/  \\___/\\____/\\_| \\_|\n\n");
-                    Console.WriteLine("Press Enter to exit.");
+                    Console.ResetColor();
+                    Console.WriteLine("Press Enter to return to the main menu.");
                     Console.ReadLine();
-                    Environment.Exit(-1);
+                    Program.menu();
                 }
             }
         }
@@ -202,8 +206,9 @@ namespace BattleSystem
             int playerAccuracy = Convert.ToInt32(rand.Next(1, 100));
             int DamageToEnemy;
             int DamageToPlayer;
-            Console.Write($"{player.name} attack:> ");
-            
+            Program.KWStart();
+            Console.Write($"{player.name} attacks:> ");
+            Program.KWStop();
 
             if (playerAccuracy == 1)
             {
@@ -242,7 +247,9 @@ namespace BattleSystem
             int enemyAccuracy = Convert.ToInt32(rand.Next(1, 100));
             int DamageToEnemy;
             int DamageToPlayer;
-            Console.Write($"{enemy.enemyType.ToString()} attack:> ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{enemy.enemyType.ToString()} attacks:> ");
+            Program.KWStop();
             if (enemyAccuracy == 1)
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} overshoots its swing, throws itself off balance and smashes its skull into the wall!\n" +
@@ -255,8 +262,16 @@ namespace BattleSystem
             }
             else if (enemyAccuracy > 30 && enemyAccuracy <= 50)
             {
-                Console.WriteLine($"You raise your guard and deftly block the attack with your shield! You take {DamageToPlayer = enemy.Atk - player.Def - 2} damage.");
-                player.HP = player.HP - DamageToPlayer;
+                DamageToPlayer = enemy.Atk - player.Def - 2;
+                if ((DamageToPlayer = enemy.Atk - player.Def - 2) < 0)
+                {
+                    Console.WriteLine("You raise your guard and deftly block the attack with your shield!");
+                }
+                else
+                {
+                    Console.WriteLine($"You raise your guard and deftly block the attack with your shield! You take {DamageToPlayer = enemy.Atk - player.Def - 2} damage.");
+                    player.HP = player.HP - DamageToPlayer;
+                }
             }
             else if (enemyAccuracy > 50 && enemyAccuracy <= 60)
             {
