@@ -25,6 +25,10 @@ namespace SecretEvent
                               "Moments later, he releases the embrace as they both slowly float away, upwards towards the full moon.");
             Console.WriteLine("Press Enter to continue.");
             Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Everything fades to black. You open your eyes, and you're back in the room.");
+            Console.WriteLine("Press Enter to continue.");
+            Console.ReadLine();
             Program.secretEventWatched = true;
             Program.magicTrinket = false;
             Program.ExtravagantRoom();

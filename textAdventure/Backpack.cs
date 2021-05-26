@@ -103,14 +103,14 @@ namespace backpack
                     {
                         backPack.RemoveAt(slot);
                         Program.KWStart();
-                        Console.WriteLine("The necklace crumbles to dust.");
+                        Console.WriteLine("As you touch the necklace, it suddenly crumbles to dust.");
                         Program.KWStop();
                         Console.ReadLine();
                         break;
                     }
                     else { 
                     Console.WriteLine("The beautiful piece of jewelery is captivating you for a while.\n" +
-                                      "Gazing into the black opal soothes you. You put it back in your pouch.");
+                                      "Gazing into the black opal soothes you. You gently put it back in your pouch.");
                     Console.ReadLine();
                     }
                     break;

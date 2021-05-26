@@ -236,12 +236,12 @@ namespace BattleSystem
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} swiftly steps to the side and dodges the attack!");
             }
-            else if (playerAccuracy > 45 && playerAccuracy <= 99)
+            else if (playerAccuracy > 45 && playerAccuracy <= 98)
             {
                 Console.WriteLine($"You deal {DamageToEnemy = player.Atk - enemy.Def} damage!");
                 enemy.HP = enemy.HP - DamageToEnemy;
             }
-            else if (playerAccuracy == 100)
+            else if (playerAccuracy > 98)
             {
                 Console.WriteLine($"Your aim is true and you hit a weakpoint on the {enemy.enemyType.ToString()}! " +
                                   $"You deal {DamageToEnemy = player.Atk * 2 + 3 - enemy.Def} critical damage!");
@@ -323,18 +323,18 @@ namespace BattleSystem
                 {
                     Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
                 }
-                else if (BossAccuracy > 55 && BossAccuracy <= 75)
+                else if (BossAccuracy > 55 && BossAccuracy <= 70)
                 {
                     Console.WriteLine($"The Lich aims its staff towards you while uttering alien words. A bolt of lightning shoots out at you!\n" +
                                       $"You take {DamageToPlayer = (enemy.Atk + 1) - player.Def} damage.");
                     player.HP = player.HP - DamageToPlayer;
                 }
-                else if (BossAccuracy > 75 && BossAccuracy <= 99)
+                else if (BossAccuracy > 70 && BossAccuracy <= 99)
                 {
                     Console.WriteLine($"The Lich deals {DamageToPlayer = enemy.Atk - player.Def} damage.");
                     player.HP = player.HP - DamageToPlayer;
                 }
-                else
+                else if (BossAccuracy == 100)
                 {
                     Console.WriteLine($"You hear the Lich utter what you assume is a curse. The staff in its hands starts glowing in an eerie red light!\n" +
                                       $"The staff finds a weak point in your armour. You take {DamageToPlayer = enemy.Atk * 2 + 2 - player.Def} critical damage!");

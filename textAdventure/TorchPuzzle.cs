@@ -101,7 +101,7 @@ namespace Puzzle
                     Program.KWStart();
                     Console.Write("heavy key!\n");
                     Program.KWStop();
-                    Console.WriteLine("You pocket it.\n");
+                    Console.WriteLine("You pocket it.\n\n");
                     Console.WriteLine("You hear a loud mechanical noise coming from the reinforced door.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
