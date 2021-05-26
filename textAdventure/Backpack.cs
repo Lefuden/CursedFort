@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using textAdventure;
+using SecretEvent;
 
 namespace backpack
 {
@@ -98,9 +99,20 @@ namespace backpack
                     Console.ReadLine();
                     break;
                 case Item.RoseNecklace:
+                    if (Program.secretEventWatched == true)
+                    {
+                        backPack.RemoveAt(slot);
+                        Program.KWStart();
+                        Console.WriteLine("The necklace crumbles to dust.");
+                        Program.KWStop();
+                        Console.ReadLine();
+                        break;
+                    }
+                    else { 
                     Console.WriteLine("The beautiful piece of jewelery is captivating you for a while.\n" +
                                       "Gazing into the black opal soothes you. You put it back in your pouch.");
                     Console.ReadLine();
+                    }
                     break;
                 default:
                     break;

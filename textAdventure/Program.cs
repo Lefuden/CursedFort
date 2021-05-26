@@ -139,7 +139,7 @@ namespace textAdventure
             // Display current Title
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.5";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.6";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
             Console.Clear();
