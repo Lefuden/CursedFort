@@ -137,7 +137,6 @@ namespace textAdventure
                                       $"And so, your adventure begins.\n");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
-                    puzzleSolved = true;
                     Entrance();
                 }
                 else if (move == "2")
@@ -160,7 +159,7 @@ namespace textAdventure
         {
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.7";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.8";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
             Console.Clear();
@@ -762,14 +761,14 @@ namespace textAdventure
                 else if (move == "SOUTH" || move == "S")
                 {
                     Console.Clear();
-                    if (puzzleSolved)
+                    if (puzzleSolved == true)
                     {
                         Console.WriteLine("It seems the loud noise you heard was the door unlocking.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                         Treasury();
                     }
-                    else if (!puzzleSolved)
+                    else
                     {
                         Console.WriteLine("The door is locked, with no discernable keyhole.");
                         Console.WriteLine("Press Enter to continue.");
