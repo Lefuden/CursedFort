@@ -139,7 +139,7 @@ namespace textAdventure
             // Display current Title
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.4";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.5";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
             Console.Clear();
@@ -825,6 +825,16 @@ namespace textAdventure
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Sadly, all of the chests are locked and secured by heavy reinforced metal.\n" +
+                                          "You notice one of the chests has a slightly worn lock on it." +
+                                          "You unsuccessfully try to pry it open.\n" +
+                                          "Dissapointed you decide it's not worth ruining your weapon for this.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                    }
                 }
                 else if (move == "NORTH" || move == "N")
                 {
@@ -900,7 +910,7 @@ namespace textAdventure
                 }
                 else if (move == "NORTH" || move == "N")
                 {
-                    if (puzzleSolved)
+                    if (puzzleSolved && hallOfTorchesKeyUnlocked == 0)
                     {
                         Console.Clear();
                         Console.Write("You try the ");
@@ -911,8 +921,8 @@ namespace textAdventure
                                       "to find another stairwell. You ascend.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
-                        EastWingLanding();
                         hallOfTorchesKeyUnlocked = 1;
+                        EastWingLanding();
                     }
                     else if (!puzzleSolved)
                     {
@@ -924,6 +934,14 @@ namespace textAdventure
                         Console.Write("somewhere.\n");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
+                    }
+                    else if (hallOfTorchesKeyUnlocked == 1)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("You ascend the stairwell.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
+                        EastWingLanding();
                     }
                 }
                 else if (move == "SOUTH" || move == "S")
@@ -1183,7 +1201,7 @@ namespace textAdventure
                 }
             }
         }
-        static void ExtravagantRoom()
+        public static void ExtravagantRoom()
         {
             while (true)
             {
@@ -1244,7 +1262,15 @@ namespace textAdventure
 
                 else if (move == "NORTH" || move == "N")
                 {
-                    if (secretEventWatched == false)
+                    if (secretEventWatched == true)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("The paintings are now blank.");
+                        Console.WriteLine("Press Enter to continue");
+                        Console.ReadLine();
+                    }
+                    else if (secretEventWatched == false)
+                    {
                     Console.Clear();
                     Console.WriteLine("There are paintings of what you assume were the nobles that once lived in this fort.\n" +
                                       "A tall monocled man with no hair except for a rather impressive, twirly moustache.\n" +
@@ -1253,6 +1279,7 @@ namespace textAdventure
                                       "wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
+                    }
                     if (magicTrinket == true && trinketActivated == true)
                     {
                         Console.Clear();
@@ -1266,13 +1293,7 @@ namespace textAdventure
                         Console.ReadLine();
                         NecklaceEvent.EventStart();
                     }
-                    if (secretEventWatched == true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("The paintings are now blank.");
-                        Console.WriteLine("Press Enter to continue");
-                        Console.ReadLine();
-                    }
+
                 }
                 else if (move == "SOUTH" || move == "S")
                 {

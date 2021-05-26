@@ -26,6 +26,8 @@ namespace SecretEvent
             Console.WriteLine("Press Enter to continue.");
             Console.ReadLine();
             Program.secretEventWatched = true;
+            Program.magicTrinket = false;
+            Program.ExtravagantRoom();
         }
 
     }
