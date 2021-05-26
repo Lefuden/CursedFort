@@ -68,9 +68,9 @@ namespace BattleSystem
             string fightMove;
             while (player.HP > 0 && enemy.HP > 0)
             {
-                Console.WriteLine($"\n\n{player.name} stats:" +
+                Console.WriteLine($"\n\n{player.name}\nStats:" +
                                   $" HP: {player.HP} | ATK: {player.Atk} | DEF: {player.Def}\n\n" +
-                                  $"{enemy.enemyType.ToString()} stats:" +
+                                  $"{enemy.enemyType.ToString()}\nStats:" +
                                   $" HP: {enemy.HP} | ATK: {enemy.Atk} | DEF: {enemy.Def}\n\n" +
                                   $"Commands:> FIGHT[F] BACKPACK[B] [EXIT]\n");
                 Console.Write("Input:> ");
@@ -178,8 +178,15 @@ namespace BattleSystem
                     Console.ReadLine();
                     break;
                 }
+                if (enemy.enemyType == EnemyType.Skeleton)
+                {
+                    EnemyAccuracy(player, enemy);
+                }
+                else if (enemy.enemyType == EnemyType.Lich)
+                {
+                    BossAccuracy(player, enemy);
+                }
                 
-                EnemyAccuracy(player, enemy);
 
                 if (player.HP <= 0)
                 {
@@ -262,7 +269,6 @@ namespace BattleSystem
             }
             else if (enemyAccuracy > 30 && enemyAccuracy <= 50)
             {
-                DamageToPlayer = enemy.Atk - player.Def - 2;
                 if ((DamageToPlayer = enemy.Atk - player.Def - 2) < 0)
                 {
                     Console.WriteLine("You raise your guard and deftly block the attack with your shield!");
@@ -289,55 +295,51 @@ namespace BattleSystem
                 player.HP = player.HP - DamageToPlayer;
             }
         }
-        //static void BossAccuracy()
-        //{
-        //    Random rand = new Random();
-        //    int BossAccuracy = Convert.ToInt32(rand.Next(1, 100));
-        //    int DamageToBoss;
-        //    int DamageToPlayer;
-        //    while (BossHP > 0 || player.HP > 0)
-        //    {
-        //        if (BossAccuracy == 1)
-        //        {
-        //            Console.WriteLine($"The Lich entangles itself in its long robes, slips and hits itself in the face with its staff!\n" +
-        //                $"The Lich takes {DamageToBoss = BossAtk + 2} damage.");
-        //            BossHP = BossHP - DamageToBoss;
-        //        }
-        //        else if (BossAccuracy > 1 && BossAccuracy <= 25)
-        //        {
-        //            Console.WriteLine("The Lich misses!");
-        //        }
-        //        else if (BossAccuracy > 25 && BossAccuracy <= 50)
-        //        {
-        //            Console.WriteLine($"You raise your guard and block the attack with your shield! You take {DamageToPlayer = BossAtk - player.Def - 2} damage.");
-        //            player.HP = player.HP - DamageToPlayer;
-        //        }
-        //        else if (BossAccuracy > 50 && BossAccuracy <= 65)
-        //        {
-        //            Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
-        //        }
-        //        else if (BossAccuracy > 65 && BossAccuracy <= 99)
-        //        {
-        //            Console.WriteLine($"The Lich deals {DamageToPlayer = BossAtk - player.Def} damage.");
-        //            player.HP = player.HP - DamageToPlayer;
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine($"You hear the Lich utter what you assume is a curse. The staff in its hands starts glowing in an eerie red light!\n" +
-        //                $"The staff finds a weak point in your armour. You take {DamageToPlayer = BossAtk * 2 + 2 - player.Def} critical damage!");
-        //            player.HP = player.HP - DamageToPlayer;
-        //        }
-        //    }
-        //}
-    }
+        static void BossAccuracy(Player player, Enemy enemy)
+        {
+            Random rand = new Random();
+            int BossAccuracy = Convert.ToInt32(rand.Next(1, 100));
+            int DamageToBoss;
+            int DamageToPlayer;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{enemy.enemyType.ToString()} attacks:> ");
+            Program.KWStop();
+            if (BossAccuracy == 1)
+            {
+                    Console.WriteLine($"The Lich entangles itself in its long robes, slips and hits itself in the face with its staff!\n" +
+                                      $"The Lich takes {DamageToBoss = enemy.Atk + 3} damage.");
+                    enemy.HP = enemy.HP - DamageToBoss;
+                }
+                else if (BossAccuracy > 1 && BossAccuracy <= 25)
+                {
+                    Console.WriteLine("The Lich misses!");
+                }
+                else if (BossAccuracy > 25 && BossAccuracy <= 45)
+                {
+                    Console.WriteLine($"You raise your guard and block the attack with your shield! You take {DamageToPlayer = (enemy.Atk - 2) - player.Def} damage.");
+                    player.HP = player.HP - DamageToPlayer;
+                }
+                else if (BossAccuracy > 45 && BossAccuracy <= 55)
+                {
+                    Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
+                }
+                else if (BossAccuracy > 55 && BossAccuracy <= 75)
+                {
+                    Console.WriteLine($"The Lich aims its staff towards you while uttering alien words. A bolt of lightning shoots out at you!\n" +
+                                      $"You take {DamageToPlayer = (enemy.Atk + 1) - player.Def} damage.");
+                    player.HP = player.HP - DamageToPlayer;
+                }
+                else if (BossAccuracy > 75 && BossAccuracy <= 99)
+                {
+                    Console.WriteLine($"The Lich deals {DamageToPlayer = enemy.Atk - player.Def} damage.");
+                    player.HP = player.HP - DamageToPlayer;
+                }
+                else
+                {
+                    Console.WriteLine($"You hear the Lich utter what you assume is a curse. The staff in its hands starts glowing in an eerie red light!\n" +
+                                      $"The staff finds a weak point in your armour. You take {DamageToPlayer = enemy.Atk * 2 + 2 - player.Def} critical damage!");
+                    player.HP = player.HP - DamageToPlayer;
+                }
+            }
+        }
 }
-
-//* ACCURACY: 1-100, =1 fumble || >2 && <=25 miss || >25 && <=50 block || >50 && <=65 dodge || >65  && <=99 hit || =100 crit
-
-//if Attack
-//hit     = (>65  && <=99)       X enemy/player damage minus X enemy/player defense
-//miss    = (>2 && <=25)         0 damage
-//dodge   = (>50 && <=65)        0 damage
-//block   = (>25 && <=50)        X enemy/player damage minus X enemy/player block
-//crit    = (=100) (X to X *2)   enemy/player damage minus X enemy/player defense
-//fumble  = (=1)                 X self damage minus X self defense*/

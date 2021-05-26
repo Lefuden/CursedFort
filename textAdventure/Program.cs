@@ -36,7 +36,7 @@ namespace textAdventure
 
         public static void controls()
         {
-            Console.WriteLine($"\n\n{player.name} stats:\nHP: {player.HP} | ATK: {player.Atk} | DEF: {player.Def}" +
+            Console.WriteLine($"\n\n{player.name}\nStats:\nHP: {player.HP} | ATK: {player.Atk} | DEF: {player.Def}" +
                               $"\nCommands:> NORTH[N] WEST[W] SOUTH[S] EAST[E] BACKPACK[B] MAP[M] [EXIT]");
             Console.Write("Input:> ");
             move = Console.ReadLine();
@@ -86,6 +86,27 @@ namespace textAdventure
         }
         public static void menu()
         {
+        guardQuarterKey = 1;
+        guardQuarterKeyUnlocked = 0;
+        hallOfTorchesKey = 1;
+        hallOfTorchesKeyUnlocked = 0;
+        treasuryKey = 1;
+        treasuryKeyUnlocked = 0;
+        SWBhealthPotion = 1;
+        EWBhealthPotion = 1;
+        NWLhealthPotion = 1;
+        Mace = 1;
+        OakShield = 1;
+        southwingskeleton = true;
+        dampcellarskeleton = true;
+        northstairwellskeleton = true;
+        throneroomlich = true;
+        puzzleSolved = false;
+        lockedChest = true;
+        magicTrinket = false;
+        trinketActivated = false;
+        puzzleActivated = false;
+        secretEventWatched = false;
             while (true) 
             {
                 Console.Clear();
@@ -116,6 +137,7 @@ namespace textAdventure
                                       $"And so, your adventure begins.\n");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
+                    puzzleSolved = true;
                     Entrance();
                 }
                 else if (move == "2")
@@ -136,10 +158,9 @@ namespace textAdventure
         }
         static void Main(string[] args)
         {
-            // Display current Title
             Console.WriteLine("Default Title: {0}",
                                    Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.6";
+            Console.Title = "Cursed Fort by Lefuden v.1.0.7";
             Console.WriteLine("Changed Title: {0}",
                                    Console.Title);
             Console.Clear();
@@ -1225,7 +1246,7 @@ namespace textAdventure
                         Console.Write("[Y]ES/[N]O:> ");
                         decide = Console.ReadLine().ToUpper();
 
-                        if (decide == "YES" || decide == "Y" && !puzzleSolved)
+                        if ((decide == "YES" && !puzzleSolved) || (decide == "Y" && !puzzleSolved))
                         {
                             Console.Clear();
                             Console.Write("The door is locked, perhaps there's a ");
@@ -1237,7 +1258,7 @@ namespace textAdventure
                             Console.ReadLine();
                             ExtravagantRoom();
                         }
-                        else if (decide == "NO" || decide == "N" && !puzzleSolved)
+                        else if (decide == "NO" || decide == "N")
                         {
                             Console.Clear();
                             Console.WriteLine("You decide to keep exploring.");
@@ -1245,7 +1266,7 @@ namespace textAdventure
                             Console.ReadLine();
                             ExtravagantRoom();
                         }
-                        else if (decide == "YES" || decide == "Y" && puzzleSolved)
+                        else if ((decide == "YES" && puzzleSolved) || (decide == "Y" && puzzleSolved))
                         {
                             Console.Clear();
                             Console.Write("You try the ");
