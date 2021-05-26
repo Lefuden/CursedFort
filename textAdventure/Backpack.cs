@@ -23,7 +23,6 @@ namespace backpack
             }
             else
             {
-                
                 Console.WriteLine("You open your backpack.");
                 for (int i = 0; i < backPack.Count; i++)
                 {
@@ -31,15 +30,10 @@ namespace backpack
                 }
                 Console.Write("\nSelect item by number:> ");
                 string str = Console.ReadLine().ToUpper();
-                                    //(!Char.IsDigit(str[0]) &&
-                                    //!(Int32.Parse(str) < backpack.Count) &&
-                                    //!(str == "EXIT") && !(str == "E"))
-                                    //(!(Char.IsDigit(str[0]) || str == "EXIT" || str == "E"))
-                while (true)
+                 while (true)
                 {
                     if (str.Length < 1)
                     {
-
                     }
                     else if (int.TryParse(str, out int n))
                     {
@@ -59,7 +53,6 @@ namespace backpack
                     str = Console.ReadLine().ToUpper();
                 }
             }
-
         }
         public void UseItem(int slot)
         {
@@ -128,26 +121,3 @@ namespace backpack
         RoseNecklace
     }
 }
-
-
-/* create list of items picked up
-on command [B]ackpack show list
-subcommand [U]se:
-if Weapon or Shield - [U]se modifies Stats.<attack or defense> "You equip <item>"
-if >0 HP potion - [U]se modifies Stats.<Base HP>, set HP potion-- "you heal XX HP"
-*/
-
-//[B]
-//1. Mace
-//2. shield
-//3. hp potion
-
-//select item:> 1
-//    you equip Mace, your attack increase by 2.
-
-
-//                foreach (Item item in backpack)
-//            {
-//    Console.WriteLine("Contents:");
-//    Console.WriteLine(item);
-//}

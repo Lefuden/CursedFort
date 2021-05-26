@@ -21,7 +21,6 @@ namespace Puzzle
             Console.WriteLine($"\n\nCommands:> TORCH[1] TORCH[2] TORCH[3] TORCH[4] [LEAVE] [EXIT]");
             Console.Write("Input:> ");
             str = Console.ReadLine().ToUpper();
-
             while (true)
             {
                 if (str.Length < 1)

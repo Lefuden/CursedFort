@@ -28,7 +28,6 @@ namespace textAdventure
             Console.WriteLine("Press Enter to continue.");
             Console.ReadLine();
         }
-
     }
 }
 

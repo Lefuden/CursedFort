@@ -32,8 +32,6 @@ namespace textAdventure
         public static bool trinketActivated = false;
         public static bool puzzleActivated = false;
         public static bool secretEventWatched = false;
-
-
         public static void controls()
         {
             Console.WriteLine($"\n\n{player.name}\nStats:\nHP: {player.HP} | ATK: {player.Atk} | DEF: {player.Def}" +
@@ -57,7 +55,6 @@ namespace textAdventure
                     Console.WriteLine($"Are you sure you want to stop playing, {player.name}? There is no save function. Sorry.");
                     Console.Write("[Y]ES/[N]O:> ");
                     decide = Console.ReadLine().ToUpper();
-
                     if (decide == "YES" || decide == "Y")
                     {
                         Console.Clear();
@@ -145,23 +142,19 @@ namespace textAdventure
                 }
             }
         }
-
         public static void KWStart()
         {
-
             Console.ForegroundColor = ConsoleColor.Blue;
         }
         public static void KWStop()
         { 
-        Console.ResetColor();
+            Console.ResetColor();
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Default Title: {0}",
-                                   Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.0.9";
-            Console.WriteLine("Changed Title: {0}",
-                                   Console.Title);
+            Console.WriteLine("Default Title: {0}", Console.Title);
+            Console.Title = "Cursed Fort by Lefuden v.1.1.0";
+            Console.WriteLine("Changed Title: {0}", Console.Title);
             Console.Clear();
             menu();
         }
@@ -173,7 +166,6 @@ namespace textAdventure
                 Console.WriteLine($"You stand in front of a large black gate.\nIt is surrounded by water on both sides.\nBehind you is the boat you arrived on.\n" +
                                   $"The sun is starting to set.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -190,7 +182,6 @@ namespace textAdventure
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
-
                 else if (move == "NORTH" || move == "N")
                 {
                     Console.Clear();
@@ -227,7 +218,6 @@ namespace textAdventure
                         Console.ReadLine();
                         menu();
                     }
-
                     else
                     {
                         Console.Clear();
@@ -237,7 +227,6 @@ namespace textAdventure
                         Entrance();
                     }
                 }
-
             }
         }
         static void Hallway()
@@ -251,7 +240,6 @@ namespace textAdventure
                                   "This place must have been abandoned a long time ago.\nYou see two doors, one to the west and the other to the east.\n" +
                                   "The large open gate is to the south.");
                 controls();
-
                 if (move == "NORTH" || move == "N")
                 {
                     Console.Clear();
@@ -274,7 +262,6 @@ namespace textAdventure
                         guardQuarterKeyUnlocked = 1;
                         guardQuarterKey = 1;
                         SouthWingStairwell();
-
                     }
                     else if (guardQuarterKeyUnlocked == 1)
                     {
@@ -322,7 +309,6 @@ namespace textAdventure
                 Console.WriteLine("As you step into the room via the south door, you see what looks like a small Guards Quarters. \nThere are weapons along the side of the east wall," +
                                   " and an empty fireplace straight ahead to the north.\nTo the west you see a wooden table with something shiny on top of it.");
                 controls();
-
                 if (move == "NORTH" || move == "N")
                 {
                     Console.Clear();
@@ -372,7 +358,6 @@ namespace textAdventure
         }
         static void SouthWingStairwell()
         {
-
             while (true)
             {
                 if (southwingskeleton)
@@ -384,7 +369,6 @@ namespace textAdventure
                                       "Suddenly it starts moving towards you - Prepare for battle!");
                     CombatSystem.Combat(player, new Enemy(EnemyType.Skeleton));
                     southwingskeleton = false;
-                    
                 }
                 else if (!southwingskeleton)
                 {
@@ -424,7 +408,6 @@ namespace textAdventure
                         SouthWingLanding();
                     }
                 }
-
             }
         }
         static void SouthWingLanding()
@@ -437,7 +420,6 @@ namespace textAdventure
                                   "flowing through the room and out the south arch.\nThere are four stone pillars in a square shape, " +
                                   "a few meters apart in the middle of the room.\nThe stairwell is to the west,\nand there's another door to the east.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -480,13 +462,11 @@ namespace textAdventure
                 Console.WriteLine("You arrive on a balcony through the north door. The fresh air fill your lungs as you stand there,\nleaning against the railing for a while.\n" +
                                   "Looking around this small space, you don't see much of value. Perhaps it's worth a closer look either way.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
-                    Console.WriteLine("You decide to lean over the railing a bit out of curiosity.\n" +
-                                      "I could probably survive this fall - you think to yourself.\n" +
-                                      "You step away from the railing, shaking your head.");
+                    Console.WriteLine("You gaze out over the water, it's quiet. Too quiet. No birds, no fish - only the soft whispers of the wind.\n" +
+                                      "You can see your boat slightly to the west, anchored close to the entrance of the fort.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
@@ -527,8 +507,9 @@ namespace textAdventure
                 else if (move == "EAST" || move == "E")
                 {
                     Console.Clear();
-                    Console.WriteLine("You gaze out over the water, it's quiet. Too quiet. No birds, no fish - only the soft whispers of the wind.\n" +
-                                      "You can see your boat slightly to the west, anchored close to the entrance of the fort.");
+                    Console.WriteLine("You decide to lean over the railing a bit out of curiosity.\n" +
+                                      "I could probably survive this fall - you think to yourself.\n" +
+                                      "You step away from the railing, shaking your head.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                 }
@@ -543,7 +524,6 @@ namespace textAdventure
                                   "The middle part of the bridge, to the north, has fallen apart and you see no way of getting to the other side.\n" +
                                   "You notice something on the ground to the east.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -605,7 +585,6 @@ namespace textAdventure
                 Console.WriteLine("You find yourself in a short and narrow corridor, a trickle of light emanates from a crack in the wall.\n" +
                                   "The sides are littered with rubble. East and west has one door each.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -648,7 +627,6 @@ namespace textAdventure
                                   "There must've been some heavy fighting going on in this part of the fort.\n" +
                                   "There's an archway to the north, a door to the west. You spot a stairwell to the east.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -747,7 +725,6 @@ namespace textAdventure
                                   "There's a large, rather impressive reinforced door to the south.\n" +
                                   "You notice four unlit torches to the east of the door, curious..");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     if (puzzleActivated == false){
@@ -806,7 +783,6 @@ namespace textAdventure
                         Console.WriteLine("There is nothing else of value.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
-                        
                     }
                 }
             }
@@ -819,7 +795,6 @@ namespace textAdventure
                 Console.WriteLine("This room is very slightly lit up by the light from the previous hall.\n" +
                                   "There's lots of chests along the walls, this has to be the fort treasury!");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     if (Mace == 1 && lockedChest == true)
@@ -939,7 +914,6 @@ namespace textAdventure
                 Console.WriteLine("This area has seen better days. A large pile of stone and wooden beams lie in the middle of the room.\n" +
                                   "You look up and notice the roof has caved in. There's a door to the north and the south.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -1011,7 +985,6 @@ namespace textAdventure
                                   "You see a rather impressive fireplace to the west.\n" +
                                   "A gentle breeze flows into the room from the east. You have a door to the north and a stairwell to the south.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -1054,7 +1027,6 @@ namespace textAdventure
                 Console.WriteLine("You arrive on the balcony through the west door. The fresh air fill your lungs as you stand there,\nleaning against the railing for a while.\n" +
                                   "Looking around this small space, you don't see much of value. Perhaps it's worth a closer look either way.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -1134,7 +1106,7 @@ namespace textAdventure
                 {
                     Console.Clear();
                     Console.WriteLine("Before even taking a step into the room, you can already hear the clattering of bones.\n" +
-                                      "A skeleton warrior clad in leather armour, wielding a spear lunges at you." +
+                                      "A skeleton warrior clad in leather armour, wielding a spear lunges at you.\n\n" +
                                       "Prepare for battle!");
                     CombatSystem.Combat(player, new Enemy(EnemyType.Skeleton));
                     northstairwellskeleton = false;
@@ -1147,7 +1119,6 @@ namespace textAdventure
                                       "The remains of the skeleton warrior lies in a pile of bones.\n" +
                                       "A red carpet leads from the south entrance and to the west stairwell.");
                     controls();
-
                     if (move == "WEST" || move == "W")
                     {
                         Console.Clear();
@@ -1191,7 +1162,6 @@ namespace textAdventure
                 Console.WriteLine("You stand in a small corridor. The red carpet leads straight through the room,\n" +
                                   "between the door to the west and the stairwell to the east. There are large glass windows on both sides.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -1232,7 +1202,6 @@ namespace textAdventure
                         Console.ReadLine();
                     }
                 }
-
                 else if (move == "EAST" || move == "E")
                 {
                     Console.Clear();
@@ -1253,7 +1222,6 @@ namespace textAdventure
                                   "There are paintings on the walls, the red carpet splits in the middle of the room, \n" +
                                   "leading to doors to the south, west and east.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     while (decide != "YES" || decide != "Y" || decide != "NO" || decide != "N")
@@ -1301,7 +1269,6 @@ namespace textAdventure
                         }
                     }
                 }
-
                 else if (move == "NORTH" || move == "N")
                 {
                     if (secretEventWatched == true)
@@ -1335,7 +1302,6 @@ namespace textAdventure
                         Console.ReadLine();
                         NecklaceEvent.EventStart();
                     }
-
                 }
                 else if (move == "SOUTH" || move == "S")
                 {
@@ -1363,7 +1329,6 @@ namespace textAdventure
                 Console.WriteLine("You stand on what once was a rather impressive stone bridge. Heavy winds hit you from the west.\n" +
                                   "The middle part of the bridge, to the south, has fallen apart and you see no way of getting to the other side.");
                 controls();
-
                 if (move == "WEST" || move == "W")
                 {
                     Console.Clear();
@@ -1437,9 +1402,18 @@ namespace textAdventure
                     Console.WriteLine("  | | | | | || |___  | |___| |\\  | |/ /|_|");
                     Console.WriteLine("  \\_/ \\_| |_/\\____/  \\____/\\_| \\_/___/ (_)\n\n");
                     KWStop();
-                    Console.WriteLine("Press Enter to return to the main menu.");
-                    Console.ReadLine();
-                    menu();
+                    if (secretEventWatched == false){
+                        Console.WriteLine("By the way, you might've missed a secret..");
+                        Console.WriteLine("Press Enter to return to the main menu.");
+                        Console.ReadLine();
+                        menu();
+                    }
+                    else if (secretEventWatched == true)
+                    {
+                        Console.WriteLine("Press Enter to return to the main menu.");
+                        Console.ReadLine();
+                        menu();
+                    }
                 }
             }
         }

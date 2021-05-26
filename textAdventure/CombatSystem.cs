@@ -12,30 +12,25 @@ namespace BattleSystem
     }
     public class Player
     {
-        
         public Player(string name)
         {
-            this.name = name; //name är parametern. this.name är objektets namn. "this" refererar till objektet som constructorn skapar.
+            this.name = name;
             HP = 25;
             Def = 2;
             Atk = 5;
             backpack = new Backpack();
-
         }
         public Backpack backpack;
         public string name;
-        public int HP { get; set; }  //hp20, def2, atk5
+        public int HP { get; set; }
         public int Def { get; set; }
         public int Atk { get; set; }
     }
-
     public class Enemy
     {
         public Enemy(EnemyType enemyType)
         {
             this.enemyType = enemyType;
-            
-
             if (enemyType == EnemyType.Skeleton)
             {
                 HP = 15;
@@ -50,11 +45,10 @@ namespace BattleSystem
             }
         }
         public EnemyType enemyType { get; set; }
-        public int HP { get; set; } //hp10, def2, atk5
+        public int HP { get; set; }
         public int Def { get; set; }
         public int Atk { get; set; }
     }
-    
     public class CombatSystem
     {
         public static void ClearKeyBuffer()
@@ -186,8 +180,6 @@ namespace BattleSystem
                 {
                     BossAccuracy(player, enemy);
                 }
-                
-
                 if (player.HP <= 0)
                 {
                     Console.Clear();
@@ -216,7 +208,6 @@ namespace BattleSystem
             Program.KWStart();
             Console.Write($"{player.name} attacks:> ");
             Program.KWStop();
-
             if (playerAccuracy == 1)
             {
                 Console.WriteLine($"You somehow manage to throw yourself off balance and smash your face into the wall!\n" +
@@ -232,11 +223,11 @@ namespace BattleSystem
                 Console.WriteLine($"The {enemy.enemyType.ToString()} raises its guard! You deal {DamageToEnemy = player.Atk - enemy.Def - 2} damage.");
                 enemy.HP = enemy.HP - DamageToEnemy;
             }
-            else if (playerAccuracy > 35 && playerAccuracy <= 45)
+            else if (playerAccuracy > 35 && playerAccuracy <= 40)
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} swiftly steps to the side and dodges the attack!");
             }
-            else if (playerAccuracy > 45 && playerAccuracy <= 98)
+            else if (playerAccuracy > 40 && playerAccuracy <= 98)
             {
                 Console.WriteLine($"You deal {DamageToEnemy = player.Atk - enemy.Def} damage!");
                 enemy.HP = enemy.HP - DamageToEnemy;
@@ -263,11 +254,11 @@ namespace BattleSystem
                                   $"The {enemy.enemyType.ToString()} takes {DamageToEnemy = enemy.Atk + 3} damage.");
                 enemy.HP = enemy.HP - DamageToEnemy;
             }
-            else if (enemyAccuracy > 1 && enemyAccuracy <= 30)
+            else if (enemyAccuracy > 1 && enemyAccuracy <= 35)
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} misses!");
             }
-            else if (enemyAccuracy > 30 && enemyAccuracy <= 50)
+            else if (enemyAccuracy > 35 && enemyAccuracy <= 50)
             {
                 if ((DamageToPlayer = enemy.Atk - player.Def - 2) < 0)
                 {
@@ -279,11 +270,11 @@ namespace BattleSystem
                     player.HP = player.HP - DamageToPlayer;
                 }
             }
-            else if (enemyAccuracy > 50 && enemyAccuracy <= 60)
+            else if (enemyAccuracy > 50 && enemyAccuracy <= 65)
             {
                 Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
             }
-            else if (enemyAccuracy > 60 && enemyAccuracy <= 99)
+            else if (enemyAccuracy > 65 && enemyAccuracy <= 99)
             {
                 Console.WriteLine($"The {enemy.enemyType.ToString()} deals {DamageToPlayer = enemy.Atk - player.Def} damage.");
                 player.HP = player.HP - DamageToPlayer;

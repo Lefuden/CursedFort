@@ -33,6 +33,5 @@ namespace SecretEvent
             Program.magicTrinket = false;
             Program.ExtravagantRoom();
         }
-
     }
 }
