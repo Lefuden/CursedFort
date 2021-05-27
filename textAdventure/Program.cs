@@ -153,7 +153,7 @@ namespace textAdventure
         static void Main(string[] args)
         {
             Console.WriteLine("Default Title: {0}", Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.1.0";
+            Console.Title = "Cursed Fort by Lefuden v.1.1.1";
             Console.WriteLine("Changed Title: {0}", Console.Title);
             Console.Clear();
             menu();
@@ -447,7 +447,7 @@ namespace textAdventure
                 else if (move == "EAST" || move == "E")
                 {
                     Console.Clear();
-                    Console.WriteLine("You try the east door, to your surprise -it isn't locked. It creaks open.");
+                    Console.WriteLine("You try the east door, it creaks open.");
                     Console.WriteLine("Press Enter to continue.");
                     Console.ReadLine();
                     SouthWingCorridor();
