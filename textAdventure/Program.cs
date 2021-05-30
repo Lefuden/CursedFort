@@ -45,7 +45,7 @@ namespace textAdventure
             }
             if (move =="MAP" || move == "M")
             {
-                mapSystem.map();
+                mapSystem.Map();
             }
             if (move == "EXIT")
             {
@@ -153,7 +153,7 @@ namespace textAdventure
         static void Main(string[] args)
         {
             Console.WriteLine("Default Title: {0}", Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.1.1";
+            Console.Title = "Cursed Fort by Lefuden v.1.1.2";
             Console.WriteLine("Changed Title: {0}", Console.Title);
             Console.Clear();
             menu();
@@ -305,10 +305,21 @@ namespace textAdventure
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("As you step into the room via the south door, you see what looks like a small Guards Quarters. \nThere are weapons along the side of the east wall," +
-                                  " and an empty fireplace straight ahead to the north.\nTo the west you see a wooden table with something shiny on top of it.");
-                controls();
+                if(guardQuarterKey == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("As you step into the room via the south door, you see what looks like a small Guards Quarters. \nThere are weapons along the side of the east wall," +
+                                      " and an empty fireplace straight ahead to the north.\nTo the west you see a wooden table with something shiny on top of it.");
+                    controls();
+                }
+                else if (guardQuarterKey == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("As you step into the room via the south door, you see what looks like a small Guards Quarters. \nThere are weapons along the side of the east wall," +
+                                      " and an empty fireplace straight ahead to the north.\nTo the west you see a wooden table.");
+                    controls();
+                }
+                
                 if (move == "NORTH" || move == "N")
                 {
                     Console.Clear();
@@ -803,7 +814,7 @@ namespace textAdventure
                         Console.WriteLine("Sadly, all of the chests are locked and secured by heavy reinforced metal.\n" +
                                           "You notice one of the chests has a slightly worn lock on it." +
                                           "You unsuccessfully try to pry it open.\n" +
-                                          "Dissapointed you decide it's not worth ruining your weapon for this.");
+                                          "Disappointed you decide it's not worth ruining your weapon for this.");
                         Console.WriteLine("Press Enter to continue.");
                         Console.ReadLine();
                     }
@@ -1280,14 +1291,14 @@ namespace textAdventure
                     }
                     else if (secretEventWatched == false)
                     {
-                    Console.Clear();
-                    Console.WriteLine("There are paintings of what you assume were the nobles that once lived in this fort.\n" +
-                                      "A tall monocled man with no hair except for a rather impressive, twirly moustache.\n" +
-                                      "He's dressed in a fancy suit with a purple inlay accompanied by a purple tie.\n\n" +
-                                      "The painting next to him must have been his wife. A beautiful red haired lady,\n" +
-                                      "wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
-                    Console.WriteLine("Press Enter to continue.");
-                    Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("There are paintings of what you assume were the nobles that once lived in this fort.\n" +
+                                          "A tall monocled man with no hair except for a rather impressive, twirly mustache.\n" +
+                                          "He's dressed in a fancy suit with a purple inlay accompanied by a purple tie.\n\n" +
+                                          "The painting next to him must have been his wife. A beautiful red haired lady,\n" +
+                                          "wearing a long white dress adorned with red roses. Her eyes almost seem to follow you.");
+                        Console.WriteLine("Press Enter to continue.");
+                        Console.ReadLine();
                     }
                     if (magicTrinket == true && trinketActivated == true)
                     {

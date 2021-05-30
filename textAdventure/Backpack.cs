@@ -28,7 +28,7 @@ namespace backpack
                 {
                     Console.WriteLine($"{i + 1}.{backPack[i]}");
                 }
-                Console.Write("\nSelect item by number:> ");
+                Console.Write("\nSelect item by number [#] or CLOSE[C]:> ");
                 string str = Console.ReadLine().ToUpper();
                  while (true)
                 {
@@ -45,7 +45,7 @@ namespace backpack
                     }
                     else if (str == "CLOSE" || str == "C")
                     {
-                        Console.WriteLine("You close the backpack\nPress Enter to continue.");
+                        Console.WriteLine("\nYou close the backpack\nPress Enter to continue.");
                         Console.ReadLine();
                         break;
                     }
