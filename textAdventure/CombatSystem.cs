@@ -33,13 +33,13 @@ namespace BattleSystem
             this.enemyType = enemyType;
             if (enemyType == EnemyType.Skeleton)
             {
-                HP = 15;
+                HP = 18;
                 Def = 2;
                 Atk = 5;
             }
             else if (enemyType == EnemyType.Lich)
             {
-                HP = 40;
+                HP = 50;
                 Def = 3;
                 Atk = 7;
             }
@@ -211,7 +211,7 @@ namespace BattleSystem
             if (playerAccuracy == 1)
             {
                 Console.WriteLine($"You somehow manage to throw yourself off balance and smash your face into the wall!\n" +
-                                  $"you take {DamageToPlayer = player.Atk + 3} damage.");
+                                  $"you take {DamageToPlayer = player.Atk + 4} damage.");
                 player.HP = player.HP - DamageToPlayer;
             }
             else if (playerAccuracy > 1 && playerAccuracy <= 20)
@@ -234,8 +234,8 @@ namespace BattleSystem
             }
             else if (playerAccuracy > 98)
             {
-                Console.WriteLine($"Your aim is true and you hit a weakpoint on the {enemy.enemyType.ToString()}! " +
-                                  $"You deal {DamageToEnemy = player.Atk * 2 + 3 - enemy.Def} critical damage!");
+                Console.WriteLine($"Your aim is true and you hit a weak point on the {enemy.enemyType.ToString()}! " +
+                                  $"You deal {DamageToEnemy = (player.Atk * 2) + 3 - enemy.Def} critical damage!");
                 enemy.HP = enemy.HP - DamageToEnemy;
             }
         }
@@ -282,7 +282,7 @@ namespace BattleSystem
             else if(enemyAccuracy == 100)
             {
                 Console.WriteLine($"The fearsome mass of bones suddenly move with incredible speed and steps past your guard.\n" +
-                                  $"The blow hits a weak point! You take {DamageToPlayer = enemy.Atk * 2 + 3 - player.Def} critical damage!");
+                                  $"The blow hits a weak point! You take {DamageToPlayer = (enemy.Atk * 2) + 4 - player.Def} critical damage!");
                 player.HP = player.HP - DamageToPlayer;
             }
         }
@@ -300,37 +300,37 @@ namespace BattleSystem
                     Console.WriteLine($"The Lich entangles itself in its long robes, slips and hits itself in the face with its staff!\n" +
                                       $"The Lich takes {DamageToBoss = enemy.Atk + 3} damage.");
                     enemy.HP = enemy.HP - DamageToBoss;
-                }
-                else if (BossAccuracy > 1 && BossAccuracy <= 25)
-                {
-                    Console.WriteLine("The Lich misses!");
-                }
-                else if (BossAccuracy > 25 && BossAccuracy <= 45)
-                {
-                    Console.WriteLine($"You raise your guard and block the attack with your shield! You take {DamageToPlayer = (enemy.Atk - 2) - player.Def} damage.");
-                    player.HP = player.HP - DamageToPlayer;
-                }
-                else if (BossAccuracy > 45 && BossAccuracy <= 55)
-                {
-                    Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
-                }
-                else if (BossAccuracy > 55 && BossAccuracy <= 70)
-                {
-                    Console.WriteLine($"The Lich aims its staff towards you while uttering alien words. A bolt of lightning shoots out at you!\n" +
-                                      $"You take {DamageToPlayer = (enemy.Atk + 1) - player.Def} damage.");
-                    player.HP = player.HP - DamageToPlayer;
-                }
-                else if (BossAccuracy > 70 && BossAccuracy <= 99)
-                {
-                    Console.WriteLine($"The Lich deals {DamageToPlayer = enemy.Atk - player.Def} damage.");
-                    player.HP = player.HP - DamageToPlayer;
-                }
-                else if (BossAccuracy == 100)
-                {
-                    Console.WriteLine($"You hear the Lich utter what you assume is a curse. The staff in its hands starts glowing in an eerie red light!\n" +
-                                      $"The staff finds a weak point in your armour. You take {DamageToPlayer = enemy.Atk * 2 + 2 - player.Def} critical damage!");
-                    player.HP = player.HP - DamageToPlayer;
-                }
+            }
+            else if (BossAccuracy > 1 && BossAccuracy <= 25)
+            {
+                Console.WriteLine("The Lich misses!");
+            }
+            else if (BossAccuracy > 25 && BossAccuracy <= 45)
+            {
+                Console.WriteLine($"You raise your guard and block the attack with your shield! You take {DamageToPlayer = (enemy.Atk - 2) - player.Def} damage.");
+                player.HP = player.HP - DamageToPlayer;
+            }
+            else if (BossAccuracy > 45 && BossAccuracy <= 55)
+            {
+                Console.WriteLine("You quickly react to the incoming swing and dodge the attack!");
+            }
+            else if (BossAccuracy > 55 && BossAccuracy <= 70)
+            {
+                Console.WriteLine($"The Lich aims its staff towards you while uttering alien words. A bolt of lightning shoots out at you!\n" +
+                                  $"You take {DamageToPlayer = (enemy.Atk + 3) - player.Def} damage.");
+                player.HP = player.HP - DamageToPlayer;
+            }
+            else if (BossAccuracy > 70 && BossAccuracy <= 99)
+            {
+                Console.WriteLine($"The Lich deals {DamageToPlayer = enemy.Atk - player.Def} damage.");
+                player.HP = player.HP - DamageToPlayer;
+            }
+            else if (BossAccuracy == 100)
+            {
+                Console.WriteLine($"You hear the Lich utter what you assume is a curse. The staff in its hands starts glowing in an eerie red light!\n" +
+                                  $"The staff finds a weak point in your armour. You take {DamageToPlayer = (enemy.Atk * 2) + 3 - player.Def} critical damage!");
+                player.HP = player.HP - DamageToPlayer;
             }
         }
+    }
 }

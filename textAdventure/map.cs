@@ -27,8 +27,8 @@ namespace textAdventure
             Console.WriteLine("|___|___|___|___|___|___|___|");
             Console.WriteLine("    |   |   |   |       |   |");
             Console.WriteLine("    |___|   |___|       |___|");
-            Console.WriteLine("                        |   |");
-            Console.WriteLine("      X                 |___|\n");
+            Console.WriteLine("      X                 |   |");
+            Console.WriteLine("                        |___|\n");
             Console.ResetColor();
             Console.WriteLine("A quick note at the bottom of the scroll reads:\n" +
                               "X marks the entrance.\n");

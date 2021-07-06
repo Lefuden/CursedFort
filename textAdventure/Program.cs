@@ -153,7 +153,7 @@ namespace textAdventure
         static void Main(string[] args)
         {
             Console.WriteLine("Default Title: {0}", Console.Title);
-            Console.Title = "Cursed Fort by Lefuden v.1.1.2";
+            Console.Title = "Cursed Fort by Lefuden v.1.1.3";
             Console.WriteLine("Changed Title: {0}", Console.Title);
             Console.Clear();
             menu();
